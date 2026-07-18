@@ -64,3 +64,36 @@ function novapress_setup() {
 }
 
 add_action( 'after_setup_theme', 'novapress_setup' );
+    
+    
+/**
+ * Enqueue Styles & Scripts
+ */
+function novapress_scripts() {
+
+	wp_enqueue_style(
+		'novapress-style',
+		get_stylesheet_uri(),
+		array(),
+		wp_get_theme()->get( 'Version' )
+	);
+
+	wp_enqueue_style(
+		'novapress-main',
+		get_template_directory_uri() . '/assets/css/main.css',
+		array(),
+		wp_get_theme()->get( 'Version' )
+	);
+
+	wp_enqueue_script(
+		'novapress-main',
+		get_template_directory_uri() . '/assets/js/main.js',
+		array(),
+		wp_get_theme()->get( 'Version' ),
+		true
+	);
+
+}
+
+add_action( 'wp_enqueue_scripts', 'novapress_scripts' );
+    
